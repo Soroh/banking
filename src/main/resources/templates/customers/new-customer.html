@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layouts/masterlayout.html}">
+
+<body>
+
+<th:block layout:fragment="content">
+    <h1>Adding new account types</h1>
+    <div  style="margin: auto;width:80%;text-align: left;">
+        <!--/*@thymesVar id="customer" type="aj"*/-->
+        <form action="#" th:action="@{/customer/save}"  th:object="${customer}"  method="post">
+            <div class="form-row">
+                <!--                    Start of input components-->
+
+                <div class="form-group col-md-6">
+                    <span th:if="${#fields.hasErrors('customerNumber')}" th:errors="*{customerNumber}"
+                          class="alert alert-danger"></span>
+                    Customer Number: <br>
+                    <input type="text" th:field="*{customerNumber}" name="customerNo" class="form-control" required
+                           placeholder="Customer number">
+                </div>
+                <div class="form-group col-md-6">
+                    <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
+                          class="alert alert-danger"></span>
+                    First Name: <br>
+                    <input type="text" th:field="*{firstName}" name="firstName" class="form-control" required
+                           placeholder="First Name">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <span th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}"
+                          class="alert alert-danger"></span>
+                    Middle Name: <br>
+                    <input type="text" th:field="*{middleName}" name="middleName" class="form-control" required
+                           placeholder="Middle Name">
+                </div>
+                <div class="form-group col-md-6">
+                    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+                          class="alert alert-danger"></span>
+                    Last Name: <br>
+                    <input type="text" th:field="*{lastName}" name="lastName" class="form-control" required
+                           placeholder="Last Name">
+                </div>
+                <div class="form-group col-md-6">
+                    <span th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"
+                          class="alert alert-danger"></span>
+                    Email Address: <br>
+                    <input type="text" th:field="*{emailAddress}" name="emailAddress" class="form-control" required
+                           placeholder="Email Address">
+                </div>
+                <div class="form-group col-md-6">
+                    <span th:if="${#fields.hasErrors('contactPhoneNumber')}" th:errors="*{contactPhoneNumber}"
+                          class="alert alert-danger"></span>
+                    Contact Phone Number: <br>
+                    <input type="text" th:field="*{contactPhoneNumber}" name="contactPhoneNumber" class="form-control" required
+                           placeholder="Contact Phone Number">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <span th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"
+                          class="alert alert-danger"></span>
+                    Date of Birth: <br>
+                    <input type="date" th:field="*{dateOfBirth}" name="dateOfBirth" class="form-control" required
+                           placeholder="Date of Birth">
+                </div>
+                <div class="form-group col-md-6">
+                    <span th:if="${#fields.hasErrors('accountNumber')}" th:errors="*{accountNumber}"
+                          class="alert alert-danger"></span>
+                    Account Number: <br>
+                    <input type="number" th:field="*{accountNumber}" name="accountNumber" class="form-control" required
+                           placeholder="Account Number">
+                </div>
+                <div class="form-group col-md-6">
+                    <span th:if="${#fields.hasErrors('balance')}" th:errors="*{balance}"
+                          class="alert alert-danger"></span>
+                    Initial Balance: <br>
+                    <input type="double" th:field="*{balance}" name="balance" class="form-control" required
+                           placeholder="Balance">
+                </div>
+                <div class="form-group col-md-6">
+                    <span th:if="${#fields.hasErrors('accountType')}" th:errors="*{accountType}"
+                          class="alert alert-danger"></span>
+                    Account type: <br>
+
+                    <div class="form-group blu-margin">
+                        <select class="form-control" th:field="*{accountType}"  id="dropOperator">
+                            <option value="0">Select Account Type</option>
+                            <option th:each="type : ${accountTypes}" th:value="${type.accountTypeId}" th:text="${type.accountTypeName}"></option>
+                        </select>
+                    </div>
+
+
+
+
+<!--                    <select th:field="*{accountType}" class="form-control">-->
+<!--                        <option value="1">SAVING</option>-->
+<!--                        <option value="2">LOAN</option>-->
+<!--                        <option value="3">CHECKING</option>-->
+<!--                    </select>-->
+                </div>
+
+
+
+
+            </div>
+
+
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-primary">Clear</button>
+        </form>
+    </div>
+</th:block>
+<footer class="container-fluid text-center">
+    <p>Footer Text</p>
+</footer>
+
+</body>
+</html>

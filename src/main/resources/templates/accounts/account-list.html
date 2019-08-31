@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layouts/masterlayout.html}">
+
+<body>
+
+<th:block layout:fragment="content">
+
+<div style="width: 45%;margin-left: 2%;margin-right:2% ;float: left;">
+    <h1>Lists All Accounts</h1>
+    <table border="0" class="table-striped table">
+        <thead class=" th-sm" style="background-color: black;color: #f1f1f1">
+
+            <th class="th-sm">Account Number</th>
+            <th class="th-sm">Account Type</th>
+            <th class="th-sm">Customer Name</th>
+            <th class="th-sm">Balance</th>
+
+        </thead>
+            <tr th:each="temp:${accounts}">
+                <td th:text="${temp.getAccountNumber()}"/>
+                <td th:text="${temp.getAccountType().getAccountTypeName()}"/>
+                <td th:text="${temp.getCustomer().getFirstName()}+' ' +${temp.getCustomer().getLastName()}"/>
+                <td th:text="${temp.getBalance()}"/>
+
+            </tr>
+        </table>
+
+</div>
+    <div style="width: 45%; margin-left: 0%;margin-right:2% ;float: left;">
+        <h1>Liquidity Information</h1>
+        <table border="0" class="table-striped table">
+            <thead class=" th-sm" style="background-color: black;color: #f1f1f1">
+
+            <th class="th-sm">Account Type</th>
+            <th class="th-sm">Number of accounts</th>
+            <th class="th-sm">Minimum Balance</th>
+            <th class="th-sm">Average Balance</th>
+            <th class="th-sm">Maximum Balance</th>
+            <th class="th-sm">Sub Total</th>
+
+            </thead>
+
+            <tr th:each="temp1:${accountDetails}">
+                <td th:text="${temp1.getAccountName()}"/>
+                <td th:text="${temp1.getNumberOfAccounts()}"/>
+                <td th:text="${temp1.getMinimumBalance()}"/>
+                <td th:text="${temp1.getAverageBalance()}"/>
+                <td th:text="${temp1.getMaximumBalance()}"/>
+                <td th:text="${temp1.getSubtotal()}"/>
+            </tr>
+
+
+
+<!--            <tr><th class="th-sm">Saving Accounts</th> <td th:text="${savingTotal}"/> </tr>-->
+<!--            <tr><th class="th-sm">Checking Accounts</th> <td th:text="${checkinTotal}"/> </tr>-->
+<!--            <tr><th class="th-sm">Loan Accounts</th> <td th:text="${loanTotal}"/></tr>-->
+            <tr><th colspan="5" class="th-sm">Bank Liquidity</th><th th:text="${liquidity}"/></tr>
+
+        </table>
+    </div>
+
+
+</th:block>
+<footer class="container-fluid text-center">
+    <p>Footer Text</p>
+</footer>
+
+</body>
+</html>
